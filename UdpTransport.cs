@@ -14,6 +14,7 @@
 // along with SNMP#NET.  If not, see <http://www.gnu.org/licenses/>.
 //
 using System;
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -178,6 +179,7 @@ namespace SnmpSharpNet
                     }
                     else
                     {
+                        Debug.WriteLine($"SocketException >> ErrorCode: {ex.ErrorCode} Message: {ex.Message}");
                         // Assume it is a timeout
                     }
                 }
@@ -230,13 +232,12 @@ namespace SnmpSharpNet
                 else
                 {
                     retry++;
+                    Debug.WriteLine("Retrying request...");
                     if (retry > retries)
                     {
                         throw new SnmpException(SnmpException.RequestTimedOut, "Request has reached maximum retries.");
                     }
                 }
-                // TODO: Commit from: https://github.com/rqx110/SnmpSharpNet/pull/7/commits/b2d0cbe26c78ba603164f62d2207b72e2965e0db
-                _socket.Close();
             }
         }
 
