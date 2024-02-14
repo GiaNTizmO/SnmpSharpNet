@@ -17,23 +17,24 @@
 namespace SnmpSharpNet
 {
     /// <summary>
-    /// SNMP Version number enumeration
+    /// Source Check enumeration for options to confirm packets received
+    /// are from the correct source
     /// </summary>
-    public enum SnmpVersion
+    public enum SourceCheck
     {
         /// <summary>
-        /// SNMP version 1
+        /// Perform no source IP or Port checks
         /// </summary>
-        Ver1 = 0,
+        None = 0,
 
         /// <summary>
-        /// SNMP version 2c
+        /// Confirm the IP Address matches, ignore the port number
         /// </summary>
-        Ver2 = 1,
+        IpOnly = 1,
 
         /// <summary>
-        /// SNMP version 3
+        /// Confirm the IP Address and Port number match
         /// </summary>
-        Ver3 = 3
+        IpAndPort = 3
     }
 }
